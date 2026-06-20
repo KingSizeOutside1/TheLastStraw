@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 public class Level1Entrance : MonoBehaviour
 {
     public GameObject promptUI;
+    [InspectorName("Level to load")]
     public string TextsAndEmails;
     private bool playerInRange = false;
 
@@ -17,7 +18,8 @@ public class Level1Entrance : MonoBehaviour
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene("TextsAndEmails");
+            Debug.Log("Attempting to load scene: " + TextsAndEmails);
+            SceneManager.LoadScene(TextsAndEmails);
         }
     }
     void OnTriggerEnter2D(Collider2D other)
