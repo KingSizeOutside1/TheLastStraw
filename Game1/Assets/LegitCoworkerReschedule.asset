@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae9315325c66b4202a70659ec22fef1c, type: 3}
+  m_Name: LegitCoworkerReschedule
+  m_EditorClassIdentifier: Assembly-CSharp::MessageCard
+  contactName: Maria (Coworker)
+  phoneNumber: 555-410-7765
+  messageLines:
+  - Hey, can we push our 3pm meeting to 4pm today?
+  - Let me know if that works.
+  correctAnswerIsYes: 1
+  feedbackCorrect: Correct! A normal scheduling request from a known coworker
+  feedbackWrong: This was a legitimate request, no need to be suspicious of routine
+    scheduling.

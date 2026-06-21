@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae9315325c66b4202a70659ec22fef1c, type: 3}
+  m_Name: FakeBankAlert
+  m_EditorClassIdentifier: Assembly-CSharp::MessageCard
+  contactName: SecureBankAlerts
+  phoneNumber: 555-201-9988
+  messageLines:
+  - 'ALERT : Unusual activity detected on your account'
+  - 'Click here to verify your identity immediately : bit.ly/secure-verify'
+  correctAnswerIsYes: 0
+  feedbackCorrect: Correct! Suspicious links in solicited bank texts are a major
+    red flag.
+  feedbackWrong: Banks never ask you to verify your identity through a text link.

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae9315325c66b4202a70659ec22fef1c, type: 3}
+  m_Name: LegitDentistReminder
+  m_EditorClassIdentifier: Assembly-CSharp::MessageCard
+  contactName: Dr. Smith Dental
+  phoneNumber: 555-330-4521
+  messageLines:
+  - Hi! This is a reminder for your appointment tomorrow at 2pm
+  - Reply YES to confirm or call us to reschedule.
+  correctAnswerIsYes: 1
+  feedbackCorrect: Correct! This is a normal appointment reminder.
+  feedbackWrong: This is actually a legitimate reminder, no harm in confirming routine
+    appointments.
