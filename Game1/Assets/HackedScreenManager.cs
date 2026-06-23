@@ -7,6 +7,10 @@ public class HackedScreenManager : MonoBehaviour
 
     public void OnRestartPressed()
     {
+        if (FailTracker.Instance != null)
+        {
+            FailTracker.Instance.ResetFails();
+        }
         SceneManager.LoadScene(mainSceneName);
     }
     
