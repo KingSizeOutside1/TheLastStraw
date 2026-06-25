@@ -3,14 +3,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Login Card", menuName = "Cards/Login Card")]
 public class LoginCard : ScriptableObject
 {
-    [Header("Sender Info")]
-    public string SenderName; // Name of the sender
-    public string SenderEmail; // Email address of the sender (used to determine if it's a phishing attempt)
-    [Header("Message")]
-    [TextArea(3, 10)]
-    public string[] MessageLines; // each line is 1 "bubble" in the conversation, shown in order from top to bottom
+    [Header("Site Info")]
+    public string SiteName; // Name of the site
     [Header("Link/Login")]
-    public string DisplayURL;
+    public string DisplayURL; // URL displayed to the player
+    public bool HasPadlockIcon; // True if the URL has a padlock icon, false if it does not
+   [Header("Suspicous Details")]
+    [TextArea(2, 4)]
+    public string SuspiciousDetailsAndHints; // Details that make the URL suspicious, such as misspellings or unusual characters
+    
     [Header("Decision")]
     public bool correctAnswerIsYes; // True if "Yes" is the correct answer, false if "No" is the correct answer
 

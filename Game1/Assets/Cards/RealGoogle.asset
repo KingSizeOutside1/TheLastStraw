@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f016e6413a5516344a01b5433ebefe02, type: 3}
+  m_Name: RealGoogle
+  m_EditorClassIdentifier: Assembly-CSharp::LoginCard
+  SiteName: Google
+  DisplayURL: accounts.google.com/login
+  HasPadlockIcon: 1
+  SuspiciousDetailsAndHints: 
+  correctAnswerIsYes: 1
+  FeedbackCorrect: Correct! accounts.google.com is Google's real domain with a valid
+    padlock  safe to log in.
+  FeedbackWrong: This one was actually safe  accounts.google.com is Google's real
+    login page.

@@ -79,8 +79,98 @@ public class LevelManager2 : MonoBehaviour
         }
     }
 
+    void ShowLoginCard(LoginCard card) // 
+    {
+        stageLabelText.text = "Stage 1: Logins"; //sets a small label so the player knows what stage theyre in
+        titleText.text = card.SiteName; // site name
+        subtitleText.text = card.DisplayURL; // shows URL bar near the top
+        bodyText.text = card.HasPadlockIcon ? "🔒 Secure connection" : "⚠ No padlock shown"; //If HasPadlockIcon is true use the first string; otherwise use the second."
+        // emoji is a placeholder for the lockicon it'll actually be, the lock icon; Represents a secure connection, while the warning sign represents an insecure connection which connects the the real world browsers protecting encrypted data.
+        UpdateCounters(loginCards.Length);
+    }
 
+    void ShowNewsCard(NewsCard card) //
+    {
+        stageLabelText.text = "Stage 2: News";
 
+        if (card.DisplayStyle == NewsType.HeadlineArticle) //fills the three text firlds with headline  cards fill the three text fields with headline/source/snippet
+        {
+            titleText.text = card.Headline;
+            subtitleText.text = card.SourceName;
+            bodyText.text = card.ArticleSnippet;
+        }
+        else //otherwise SocialPost they fill them with poster name/handle/caption instead.
+        {
+            titleText.text = card.PosterName;
+            subtitleText.text = card.PosterHandle;
+            bodyText.text = card.PostCaption;
+        }
+
+        UpdateCounters(newsCards.Length); // updates the task and fail counters for the news stage
+    }
+
+    void UpdateCounters(int stageLength) // Updates the task and fail counters
+    {
+        taskCounterText.text = "Task: " + (currentCardIndex + 1) + "/" + stageLength; // +1 because currentCardIndex is 0 based, so we add 1 to make it more human readable
+        failCounterText.text = "Fails: " + failTracker.CurrentFails + "/" + failTracker.maxFails; // shows the current number of fails and the max number of fails allowed
+        yesButton.interactable = true;
+        noButton.interactable = true;
+    }
+
+    void ShowLevelComplete()
+    {
+        currentStage = Stage.Complete; // sets the current stage to complete
+        stageLabelText.text = ""; // clears the stage label text
+        titleText.text = ""; // shows level complete in the title text
+        subtitleText.text = ""; // clears the subtitle text
+        bodyText.text = "You have completed the level!"; // shows a message in the
+
+        yesButton.interactable = false; // disables the yes button so the player cannot click it
+        noButton.interactable = false; // disables the no button so the player cannot click it
+    }
+
+    public void OnYesPressed() { HandleAnswer(true); }
+    public void OnNoPressed() { HandleAnswer(false); }
+
+    void HandleAnswer(bool answeredYes) // the value from whichever button the user presses
+    {
+        yesButton.interactable = false; // disables the yes button so the player cannot click it
+        noButton.interactable = false; // disables the no button so the player cannot click it
+
+        bool correctAnswerisYes;
+        string feedbackCorrect;
+        string feedbackWrong;
+
+        if (currentStage == Stage.Logins)
+        {
+            LoginCard card = loginCards[currentCardIndex];
+            correctAnswerisYes = card.correctAnswerIsYes;  // True if "Yes" is the correct answer, false if "No" is the correct answer
+            feedbackCorrect = card.FeedbackCorrect; // Feedback shown if player chooses the correct answer
+            feedbackWrong = card.FeedbackWrong; // Feedback shown if player chooses the incorrect answer
+        }
+        else // Same as LoginCards but for NewsCards.
+        {
+            NewsCard card = newsCards[currentCardIndex];
+            correctAnswerisYes = card.correctAnswerIsYes;
+            feedbackCorrect = card.FeedbackCorrect;
+            feedbackWrong = card.FeedbackWrong;
+        }
+
+        bool isCorrect = (answeredYes == correctAnswerisYes);
+        bodyText.text = isCorrect ? feedbackCorrect : feedbackWrong;
+        if (!isCorrect) failTracker.RegisterFail(); // if the answer is wrong, register a fail
+
+        failCounterText.text = "Fails: " + failTracker.CurrentFails + "/" + failTracker.maxFails;
+        StartCoroutine(NextCardAfterDelay());
+
+        IEnumerator NextCardAfterDelay()
+        {
+            yield return new WaitForSeconds(feedbackDisplayTime); // waits before moving on
+            currentCardIndex++;
+            ShowCard();
+        }
+
+    }
 
 
 
