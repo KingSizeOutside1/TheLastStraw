@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: RealSocialPost1
   m_EditorClassIdentifier: Assembly-CSharp::NewsCard
   DisplayStyle: 0
-  Headline: 
-  ArticleSnippet: 
-  SourceName: 
+  Headline: Bureau of Meteorology
+  ArticleSnippet: Severe weather warning issued for southeast Queensland this weekend.
+    Residents in affected areas should prepare emergency kits and monitor local updates
+    at bom.gov.au
+  SourceName: '@BOM_au'
   PosterName: Bureau of Meteorology
   PosterHandle: '@BOM_au'
   PostCaption: Severe weather warning issued for southeast Queensland this weekend.

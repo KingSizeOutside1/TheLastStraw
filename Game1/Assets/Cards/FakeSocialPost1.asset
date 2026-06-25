@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: FakeSocialPost1
   m_EditorClassIdentifier: Assembly-CSharp::NewsCard
   DisplayStyle: 0
-  Headline: 
-  ArticleSnippet: 
-  SourceName: 
+  Headline: Australian Health Department
+  ArticleSnippet: 'Important update: The government is adding fluoride to tap water
+    at dangerously high levels. Drink bottled water only until further notice. Share
+    this with your family immediately.'
+  SourceName: '@AusHealthDept_Official'
   PosterName: Australian Health Department
   PosterHandle: '@AusHealthDept_Official'
   PostCaption: 'Important update: The government is adding fluoride to tap water

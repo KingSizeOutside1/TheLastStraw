@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f016e6413a5516344a01b5433ebefe02, type: 3}
   m_Name: FakeNetflix
   m_EditorClassIdentifier: Assembly-CSharp::LoginCard
-  SiteName: FakeNetflix
+  SiteName: Netflix
   DisplayURL: netfliix.com/login
   HasPadlockIcon: 0
   SuspiciousDetailsAndHints: 

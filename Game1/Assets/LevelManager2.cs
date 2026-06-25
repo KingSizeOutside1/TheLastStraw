@@ -19,6 +19,9 @@ public class LevelManager2 : MonoBehaviour
     [Header("Stage 2: News")]
     public NewsCard[] newsCards;
 
+    [Header("Login-Only Visuals")]
+    public GameObject loginOnlyFields;
+
     private int currentCardIndex = 0;
 
     [Header("Shared UI Header")]
@@ -45,9 +48,9 @@ public class LevelManager2 : MonoBehaviour
 
         if (failTracker == null) // DEBUG FIX: If someone directly enters inside the level 2 scene the failtracker.instance wont exist yet, this creates a new backup for us.
         {
-            Debug.LogWarning("No FailTracker.Instance found - was Level 1 skipped? Creating a fallback.");
+            Debug.LogWarning("No FailTracker.Instance found - was Level 1 skipped? Creating a fallback."); // logs a warning to the console that the failtracker.instance was not found, and that we are creating a fallback.
             GameObject fallback = new GameObject("FailTracker_Fallback");
-            failTracker = fallback.AddComponent<FailTracker>();
+            failTracker = fallback.AddComponent<FailTracker>(); // creates a new gameobject called "FailTracker_Fallback" and adds the FailTracker component to it, storing it in the failtracker variable.
         }
 
         currentStage = Stage.Logins; //resets btoh their starting values, so the level behinds at the first login card no matter what.
@@ -79,36 +82,39 @@ public class LevelManager2 : MonoBehaviour
         }
     }
 
-    void ShowLoginCard(LoginCard card) // 
+    void ShowLoginCard(LoginCard card)
     {
-        stageLabelText.text = "Stage 1: Logins"; //sets a small label so the player knows what stage theyre in
-        titleText.text = card.SiteName; // site name
-        subtitleText.text = card.DisplayURL; // shows URL bar near the top
-        bodyText.text = card.HasPadlockIcon ? "🔒 Secure connection" : "⚠ No padlock shown"; //If HasPadlockIcon is true use the first string; otherwise use the second."
-        // emoji is a placeholder for the lockicon it'll actually be, the lock icon; Represents a secure connection, while the warning sign represents an insecure connection which connects the the real world browsers protecting encrypted data.
+        loginOnlyFields.SetActive(true);
+        bodyText.rectTransform.sizeDelta = new Vector2(100, 50); // smaller box for more compact login card display
+        stageLabelText.text = "Stage 1: Logins";
+        titleText.text = card.SiteName;
+        subtitleText.text = card.DisplayURL;
+        bodyText.text = card.HasPadlockIcon ? "connection secure" : "connection not secure"; // shows a message based on whether the URL is secure or not
+
         UpdateCounters(loginCards.Length);
     }
-
     void ShowNewsCard(NewsCard card) //
     {
+        loginOnlyFields.SetActive(false);
+        bodyText.rectTransform.sizeDelta = new Vector2(400, 50); // bigger box for longer article/post text
+        bodyText.rectTransform.anchoredPosition = new Vector2(232, 0); // adjust these numbers to match where it should sit
         stageLabelText.text = "Stage 2: News";
 
-        if (card.DisplayStyle == NewsType.HeadlineArticle) //fills the three text firlds with headline  cards fill the three text fields with headline/source/snippet
+        if (card.DisplayStyle == NewsType.HeadlineArticle)
         {
             titleText.text = card.Headline;
             subtitleText.text = card.SourceName;
             bodyText.text = card.ArticleSnippet;
         }
-        else //otherwise SocialPost they fill them with poster name/handle/caption instead.
+        else
         {
             titleText.text = card.PosterName;
             subtitleText.text = card.PosterHandle;
             bodyText.text = card.PostCaption;
         }
 
-        UpdateCounters(newsCards.Length); // updates the task and fail counters for the news stage
+        UpdateCounters(newsCards.Length);
     }
-
     void UpdateCounters(int stageLength) // Updates the task and fail counters
     {
         taskCounterText.text = "Task: " + (currentCardIndex + 1) + "/" + stageLength; // +1 because currentCardIndex is 0 based, so we add 1 to make it more human readable
